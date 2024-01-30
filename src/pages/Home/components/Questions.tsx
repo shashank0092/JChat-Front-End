@@ -1,4 +1,4 @@
-import QuestionModel from "../../../components/QuestionModel"
+import QuestionModel from "../../../components/F&Q/QuestionModel"
 import QUESTION from "../../../utills/QuestionAnswer.json"
 
 const Questions = () => {

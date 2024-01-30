@@ -1,4 +1,4 @@
-import TeastiMonialSlider from "../../../components/TestiMonialSlider"
+import TeastiMonialSlider from "../../../components/Testimonial/TestiMonialSlider"
 
 
 

@@ -1,5 +1,5 @@
 import LOGO from "../../../assets/Logo.png"
-import LoginGoogle from "../../../components/LoginGoogle";
+import LoginGoogle from "../../../components/GoogleLogin/LoginGoogle";
 
 const Started=()=>{
     return(
