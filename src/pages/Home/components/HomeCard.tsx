@@ -17,7 +17,7 @@ const HomeCard = () => {
                             </div>
                             <div>
                                 <div>
-                                    <p className="text-white text-center text-3xl font-bold xsm:text-base xsm:text-center">Easy And Free</p>
+                                    <p className="text-white text-center text-3xl font-medium xsm:text-base xsm:text-center">Easy And Free</p>
                                 </div>
                                 <div>
                                     {/* <p className="text-white text-center">
@@ -35,7 +35,7 @@ const HomeCard = () => {
                             </div>
                             <div>
                                 <div>
-                                    <p className="text-white text-center text-3xl font-bold xsm:text-base">Secure</p>
+                                    <p className="text-white text-center text-3xl font-medium xsm:text-base">Secure</p>
                                 </div>
                                 <div>
                                     {/* <p className="text-white text-center ">
@@ -53,7 +53,7 @@ const HomeCard = () => {
                             </div>
                             <div>
                                 <div>
-                                    <p className="text-white text-center text-3xl font-bold xsm:text-base xsm:text-center" >Cross Platform</p>
+                                    <p className="text-white text-center text-3xl font-medium xsm:text-base xsm:text-center" >Cross Platform</p>
                                 </div>
                                 <div>
                                     {/* <p className="text-white text-center">

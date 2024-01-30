@@ -19,7 +19,7 @@ const QuestionModel: React.FC<Props> = ({ data }) => {
                 <div className="border border-black rounded-lg bg-slate-100 " >
                     <div className="ml-5 py-3 flex items-center " >
                         <div className="flex-1" >
-                            <p className="text-3xl font-bold xsm:text-xl" >{data?.question}</p>
+                            <p className="text-3xl font-medium xsm:text-xl" >{data?.question}</p>
                         </div>
                         <div className="mr-10" >
                             <button className="rounded-lg bg-slate-300" >

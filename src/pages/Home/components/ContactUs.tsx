@@ -22,10 +22,10 @@ const ContactUs = () => {
                     </div>
                     <div>
                         <div>
-                            <p className="text-white text-xl flex items-center gap-1 leading-loose xsm:leading-normal xsm:text-lg" ><IoMail/>  shashank0865@gmail.com</p>
+                            <p className="text-white text-xl flex items-center gap-1 leading-loose font-thin xsm:leading-normal xsm:text-lg" ><IoMail/>  shashank0865@gmail.com</p>
                         </div>
                         <div>
-                            <p className="text-white text-xl flex items-center gap-1 leading-loose xsm:leading-normal xsm:text-lg" ><IoCall/> +91 7016204503</p>
+                            <p className="text-white text-xl flex items-center gap-1 leading-loose font-thin xsm:leading-normal xsm:text-lg" ><IoCall/> +91 7016204503</p>
                         </div>
                     </div>
                 </div>

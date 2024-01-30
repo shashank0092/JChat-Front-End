@@ -10,7 +10,7 @@ import Started from "./components/StartedCard"
 const Home=()=>{
     return(
         <>
-            <div className="border border-black xsm:w-[100vw]" >
+            <div className="" >
             <HomeHeader/>
             <HomeCard/>
             <Started/>

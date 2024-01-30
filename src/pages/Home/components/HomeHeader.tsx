@@ -8,7 +8,7 @@ const HomeHeader = () => {
                         <p className="text-7xl font-bold xsm:text-4xl xsm:text-center" >Welcome To JChat</p>
                     </div>
                     <div>
-                        <p className="text-3xl leading-relaxed xsm:text-xl" >Fast,Easy & Secure Way For your chat</p>
+                        <p className="text-3xl leading-relaxed  xsm:text-lg" >Fast,Easy & Secure Way For your chat</p>
                     </div>
                 </div>
                 <div>
