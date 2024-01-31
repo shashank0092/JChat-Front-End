@@ -1,6 +1,6 @@
-import CallCard from "../../../components/RecentActivty/CallCard";
-import ChatCard from "../../../components/RecentActivty/ChatCard";
-import MeetingCard from "../../../components/RecentActivty/MeetingCard";
+import CallCard from "../../../components/RecentActivty/RecentComunication/CallCard";
+import ChatCard from "../../../components/RecentActivty/RecentComunication/ChatCard";
+import MeetingCard from "../../../components/RecentActivty/RecentComunication/MeetingCard";
 import { IoChatboxEllipses } from "react-icons/io5";
 import { IoCallSharp } from "react-icons/io5";
 import { FaVideo } from "react-icons/fa6";

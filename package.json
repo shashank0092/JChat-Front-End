@@ -12,7 +12,10 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "@fullpage/react-fullpage": "^0.1.40",
+    "chart.js": "^4.4.1",
+    "chartjs-plugin-autocolors": "^0.2.2",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.3",
