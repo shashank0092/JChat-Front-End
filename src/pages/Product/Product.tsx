@@ -7,16 +7,20 @@ import RemainingFeatures from "./components/RemainingFeatures"
 import Welcome from "./components/Welcome"
 
 
-const Product=()=>{
-    return(
+const Product = () => {
+    return (
         <>
-            <Navbar/>
-            <Welcome/>
-            <RecentActivity/>
-            <ChartsOfActivities/>
-            <AddFriends/>  
-            <RemainingFeatures/>          
-            <Footer/>
+            <div className="fixed xsm:bottom-[91vh] bottom-[80vh] " >
+                <Navbar />
+            </div>
+            <div className="mt-40" >
+                <Welcome />
+            </div>
+            <RecentActivity />
+            <ChartsOfActivities />
+            <AddFriends />
+            <RemainingFeatures />
+            <Footer />
         </>
     )
 }

@@ -8,13 +8,13 @@ const ChartsOfActivities = () => {
 
             <div className="bg-blue-950 mt-10 ml-5 mr-5 rounded-3xl py-14 flex flex-col gap-5 mb-10" >
                 <div className="ml-5" >
-                    <p className="text-white font-bold text-5xl" >Your Activities</p>
+                    <p className="text-white font-bold text-5xl xsm:text-4xl" >Your Activities</p>
                 </div>
-                <div className="flex justify-around" >
+                <div className="flex justify-around xsm:flex-col" >
                     <div className="bg-white rounded-xl m-5 " >
                         <div className="flex flex-col gap-10" >
                             <div className="ml-2 mt-2" >
-                                <p className="text-black text-3xl">Daily Usage</p>
+                                <p className="text-black text-3xl xsm:text-xl">Daily Usage</p>
                             </div>
                             <div  >
                                 <DailyUsageChart />
@@ -24,7 +24,7 @@ const ChartsOfActivities = () => {
                     <div className="">
                         <div className="bg-white rounded-xl m-5 flex flex-col gap-10 " >
                             <div className="ml-2 mt-2">
-                                <p className="text-black text-3xl">Today's Timeline</p>
+                                <p className="text-black text-3xl xsm:text-xl">Today's Timeline</p>
                             </div>
                             <div>
                                 <TimeLineChart />
@@ -35,10 +35,10 @@ const ChartsOfActivities = () => {
                 </div>
 
                 <div>
-                <div className="flex justify-around">
+                <div className="flex justify-around xsm:flex-col">
                         <div className="bg-white rounded-xl m-5 flex flex-col gap-10 ">
                             <div className="ml-2 mt-2">
-                                <p className="text-black text-3xl">Type of Usage</p>
+                                <p className="text-black text-3xl xsm:text-xl">Type of Usage</p>
                             </div>
                             <div className="flex " >
                                 <UsageTypeChart />
@@ -46,7 +46,7 @@ const ChartsOfActivities = () => {
                         </div>
                         <div className="bg-white rounded-xl m-5 flex flex-col gap-10 " >
                             <div className="ml-2 mt-2">
-                                <p className="text-black text-3xl">Today's Data Usage</p>
+                                <p className="text-black text-3xl xsm:text-xl">Today's Data Usage</p>
                             </div>
                             <div>
                                 <TimeLineChart />

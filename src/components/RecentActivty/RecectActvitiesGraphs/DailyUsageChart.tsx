@@ -31,9 +31,9 @@ const DailyUsageChart = () => {
 
     return (
         <div className="flex items-center justify-center " >
-            <div className="w-[30vw]">
+            <div className="w-[30vw] ">
                 <>
-                    <Bar className="w-[30vw] " data={data} options={{
+                    <Bar className="w-[30vw]  " data={data} options={{
 
 
                         scales: {

@@ -4,8 +4,8 @@ const FindFriend = () => {
         <>
             <div className="flex items-center" >
                <div className="bg-white  rounded-full  flex" >
-                    <input type="text" placeholder="Enter Gmail Here" className="py-4 rounded-full outline-none w-96 px-2 " />
-                    <button className="px-2" ><FaSearch/></button>
+                    <input type="text" placeholder="Enter Gmail Here" className="py-4 rounded-full outline-none w-96 px-2  xsm:w-60" />
+                    <button className="px-5" ><FaSearch/></button>
                </div>
               
                 

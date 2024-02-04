@@ -8,19 +8,19 @@ import { FaVideo } from "react-icons/fa6";
 const RecentActivity = () => {
     return (
         <>
-            <div className="bg-black flex ml-5 mr-5 mt-20 justify-around rounded-3xl py-10 mb-10" >
+            <div className="bg-black flex ml-5 mr-5 mt-20 justify-around rounded-3xl py-10 mb-10 xsm:flex-col" >
                 <div className="flex flex-col gap-5">
                     <div className="flex items-center gap-5" >
                         <div >
-                            <p className="text-white text-4xl font-semibold underline underline-offset-8 flex items-center gap-2" >Recnt Chat  </p>
+                            <p className="text-white text-4xl font-semibold underline underline-offset-8 flex items-center gap-2 xsm:text-3xl xsm:pl-2" >Recnt Chat  </p>
                         </div>
                         <div>
                             <button className="border border-white px-5 py-2 bg-pink-300 rounded-xl" >
-                                <p><IoChatboxEllipses className="text-white text-4xl" /></p>
+                                <p><IoChatboxEllipses className="text-white text-4xl xsm:text-xl " /></p>
                             </button>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-5" >
+                    <div className="flex flex-col gap-5 xsm:ml-2 xsm:mr-2" >
                         <ChatCard />
                         <ChatCard />
                         <ChatCard />
@@ -31,14 +31,14 @@ const RecentActivity = () => {
                 <div className="flex flex-col gap-5">
                     <div className="flex items-center gap-5" >
                         <div>
-                            <p className="text-white text-4xl font-semibold underline underline-offset-8 flex items-center gap-2" >Recent Calls  </p>
+                            <p className="text-white text-4xl font-semibold underline underline-offset-8 flex items-center gap-2 xsm:text-3xl xsm:pl-2" >Recent Calls  </p>
                         </div>
 
                         <div>
-                            <button className="border border-white px-5 py-2 bg-green-300 rounded-xl"><IoCallSharp className="text-white text-4xl" /></button>
+                            <button className="border border-white px-5 py-2 bg-green-300 rounded-xl"><IoCallSharp className="text-white text-4xl xsm:text-xl " /></button>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 xsm:ml-2 xsm:mr-2">
                         <CallCard />
                         <CallCard />
                         <CallCard />
@@ -49,13 +49,13 @@ const RecentActivity = () => {
                 <div className="flex flex-col gap-5" >
                     <div className="flex items-center gap-5">
                         <div>
-                            <p className="text-white text-4xl font-semibold underline underline-offset-8 flex items-center gap-2" >Recent Meetings  </p>
+                            <p className="text-white text-4xl font-semibold underline underline-offset-8 flex items-center gap-2 xsm:text-xl xsm:pl-2" >Recent Meetings  </p>
                         </div>
                         <div>
-                            <button className="border border-white px-5 py-2 bg-blue-300 rounded-xl"><FaVideo className="text-white text-4xl" /></button>
+                            <button className="border border-white px-5 py-2 bg-blue-300 rounded-xl"><FaVideo className="text-white text-4xl xsm:text-xl" /></button>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 xsm:ml-2 xsm:mr-2">
                         <MeetingCard />
                         <MeetingCard />
                         <MeetingCard />
