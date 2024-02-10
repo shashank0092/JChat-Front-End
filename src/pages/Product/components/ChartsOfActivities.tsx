@@ -1,4 +1,4 @@
-import DailyUsageChart from "../../../components/RecentActivty/RecectActvitiesGraphs/DailyUsageChart"
+import DailyUsageChart from "../../../components/RecentActivty/RecectActvitiesGraphs/DailyUsageChart/DailyUsageChart"
 import TimeLineChart from "../../../components/RecentActivty/RecectActvitiesGraphs/TimelineChart"
 import UsageTypeChart from "../../../components/RecentActivty/RecectActvitiesGraphs/UsageTypeChart"
 
