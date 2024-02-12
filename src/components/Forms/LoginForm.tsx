@@ -1,4 +1,3 @@
-import { useFormik } from "formik";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { RiLoginCircleFill } from "react-icons/ri";
@@ -14,15 +13,7 @@ const LoginSchema = Yup.object().shape({
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false)
 
-    const formik = useFormik({
-        initialValues: {
-            email: "",
-            password: ""
-        },
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    })
+    
     return (
         <>
             <Formik
