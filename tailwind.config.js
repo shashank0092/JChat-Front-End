@@ -17,6 +17,9 @@ export default {
       },
       colors:{
         "custome-paper":"#D9D9D9",
+        "chat-container":"#1A212E",
+        "chat-child-container":"#2E3441",
+        "chat-text":"#ced9f3"
       },
       fontFamily:{
         "some-type-mono":['Sometype Mono'],
@@ -24,6 +27,8 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
 
