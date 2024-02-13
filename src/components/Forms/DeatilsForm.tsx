@@ -1,9 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { RiLoginCircleFill } from "react-icons/ri";
-import { FaRegEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+
 
 
 const RegisterSchema = Yup.object().shape({
