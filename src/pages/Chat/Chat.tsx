@@ -22,10 +22,10 @@ const Chat = () => {
                         <div  >
                            <div className="flex flex-col gap-3 overflow-y-auto h-[68vh] scrollbar-none" >
                                 {
-                                    contactValue.map((ele,key)=>{
+                                    contactValue.map((key)=>{
                                         return(
                                             <>
-                                                <Contacts key={key} />
+                                                <Contacts key={key}  />
                                             </>
                                         )
                                     })

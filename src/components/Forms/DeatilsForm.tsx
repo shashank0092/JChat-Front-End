@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
+import ImageUpload from '../UploadImage/ImageUpload';
+import { useState } from 'react';
 
 
 const RegisterSchema = Yup.object().shape({
@@ -13,16 +14,21 @@ const RegisterSchema = Yup.object().shape({
 
 
 const DetailsForm = () => {
+
+    const[imageURL,setImageURL]=useState("https://lh3.googleusercontent.com/a/ACg8ocIeLMQsUtbkaibpEqjroWbELP2mTaJ32VV-8mYzUjn7SRo=s96-c")
+
+    const name="shashank shukla"
     return (
         <>
             <div>
                 <Formik
                     initialValues={{
-                        name: "",
+                        name: "shashank shukla",
                         about: "",
                         email: "",
                         phoneNumber: "",
-                        password: ""
+                        password: "",
+                        
                     }}
 
                     onSubmit={values => {
@@ -119,36 +125,24 @@ const DetailsForm = () => {
                                                     <p>Phone No</p>
                                                 </div>
                                                 <div>
-                                                <Field
-                                                    id="phoneNumber"
-                                                    name="phoneNumber"
-                                                    type="number"
+                                                    <Field
+                                                        id="phoneNumber"
+                                                        name="phoneNumber"
+                                                        type="number"
 
-                                                    className="py-4 rounded-xl px-32 font-some-type-mono text-center outline-none"
-                                                   
-                                                />
-                                                {errors.phoneNumber && touched.phoneNumber ? (
-                                                    <div><p className="text-red-500 font-some-type-mono text-lg font-bold"  >{errors.phoneNumber}</p></div>
-                                                ) : null}
+                                                        className="py-4 rounded-xl px-32 font-some-type-mono text-center outline-none"
+
+                                                    />
+                                                    {errors.phoneNumber && touched.phoneNumber ? (
+                                                        <div><p className="text-red-500 font-some-type-mono text-lg font-bold"  >{errors.phoneNumber}</p></div>
+                                                    ) : null}
                                                 </div>
                                             </div>
                                         </div>
                                         <div className='flex flex-col items-center gap-5' >
 
-                                            <div className='w-96   flex justify-center' > 
-                                                <img src="https://lh3.googleusercontent.com/a/ACg8ocIeLMQsUtbkaibpEqjroWbELP2mTaJ32VV-8mYzUjn7SRo=s96-c" alt="shukla" className='rounded-full'  />
-                                            </div>
-                                           <div className='' >
-                                           <Field
-                                                id="avtar"
-                                                name="avtar"
-                                                type="file"
-                                                className="
-                                                w-36
-                                                font-some-type-mono text-center outline-none "
-                                                placeholder="Upload File"
-                                            /> 
-                                           </div>
+                                            <ImageUpload name={name} imageURL={imageURL} setImageURL={setImageURL}  />
+                                         
                                         </div>
 
                                     </div>

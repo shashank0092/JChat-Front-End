@@ -5,6 +5,7 @@ import React from "react"
 import Details from "./pages/Details/Details"
 
 const App:React.FC=()=>{
+  console.log(import.meta.env.VITE_APP_URL,"this is main env")
   return(
     <>
         <BrowserRouter>
