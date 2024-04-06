@@ -1,5 +1,5 @@
 import { FaGoogle } from "react-icons/fa6";
-import { FaArrowRight, FaCommentsDollar } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { useAuth0 } from "@auth0/auth0-react"
 import {TailSpin} from "react-loader-spinner"
 import { useEffect, useState } from "react";

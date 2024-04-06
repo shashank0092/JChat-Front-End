@@ -12,7 +12,7 @@ const AuthContext = createContext<
     {
         user: UserInterface | null,
         token: string | null,
-        login: (data: { email: string, password: string }) => Promise<void>
+        login: (data: { email: string, password?: string }) => Promise<void>
         register: (data: { name: string, about: string, email: string, phoneNumber: string, password: string,avtar:string }) => Promise<void>,
         requestforgetpassword:(data:{email:string})=>Promise<void>,
         resetpassword:(data:{resetToken:string,newPassword:string})=>Promise<void>

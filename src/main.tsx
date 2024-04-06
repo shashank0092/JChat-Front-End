@@ -5,7 +5,6 @@ import AuthZeroProvider from './Providers/AuthZeroProvider.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext.tsx'
 import { SocketProvider } from './context/SocketContext.tsx'
-import { Socket } from 'socket.io-client'
 
 
 
