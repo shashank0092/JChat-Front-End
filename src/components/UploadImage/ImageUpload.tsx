@@ -4,21 +4,24 @@ import { ImagAuthenticator } from '../../utills/ImageAuthenticator';
 
 
 interface sucessResponse {
-    url: string
+    url: string,
+    filePath:string
 }
 interface ImageUploadProps{
     name:string,
     imageURL:string,
     setImageURL:React.Dispatch<React.SetStateAction<string>>
+    setImagePath:React.Dispatch<React.SetStateAction<string>>
 }
 
-const ImageUpload = ({name,imageURL,setImageURL}:ImageUploadProps) => {
+const ImageUpload = ({name,imageURL,setImageURL,setImagePath}:ImageUploadProps) => {
 
     
 
     const OnSucess = (res: sucessResponse) => {
         console.log(res)
         setImageURL(res.url)
+        setImagePath(res.filePath)
     }
 
 

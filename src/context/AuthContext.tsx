@@ -13,7 +13,7 @@ const AuthContext = createContext<
         user: UserInterface | null,
         token: string | null,
         login: (data: { email: string, password?: string }) => Promise<void>
-        register: (data: { name: string, about: string, email: string, phoneNumber: string, password: string,avtar:string }) => Promise<void>,
+        register: (data: { name: string, about: string, email: string, phoneNumber: string, password: string,imagePath:string }) => Promise<void>,
         requestforgetpassword:(data:{email:string})=>Promise<void>,
         resetpassword:(data:{resetToken:string,newPassword:string})=>Promise<void>
         logout: () => Promise<void>,
@@ -76,7 +76,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         )
     }
 
-    const register = async (data: { name: string, about: string, email: string, phoneNumber: string, password: string,avtar:string }) => {
+    const register = async (data: { name: string, about: string, email: string, phoneNumber: string, password: string,imagePath:string }) => {
         await requestHnadler(
             async () => await registerUser(data),
             setLoading,

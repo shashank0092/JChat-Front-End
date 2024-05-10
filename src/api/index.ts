@@ -10,7 +10,7 @@ const apiClient=axios.create({
 
 apiClient.interceptors.request.use(
     function(config){
-        const token=LocalStorage.get("toekn")
+        const token=LocalStorage.get("token")
         config.headers.Authorization=`Bearer ${token}`
         return config
     },
@@ -24,7 +24,7 @@ const loginUser=(data:{email:string,password?:string})=>{
     return apiClient.post("/user/login",data)
 }
 
-const registerUser=(data:{name:string,about:string,email:string,phoneNumber:string,password:string,avtar:string})=>{
+const registerUser=(data:{name:string,about:string,email:string,phoneNumber:string,password:string,imagePath:string})=>{
     return apiClient.post("/user/register",data)
 }
 
@@ -39,11 +39,26 @@ const resetPassword=(data:{resetToken:string,newPassword:string})=>{
 const uploadImage=()=>{
     return apiClient.get("user/imageauth")
 }
+
+const SearchUser=(data:{email:string})=>{
+    return apiClient.post("/chat/serch_users",data)
+}
+
+const CreateAndGetOneOnOneChat=(data:{email:string})=>{
+    return apiClient.post("/chat/create_one_chat",data)
+}
+
+
+const GetAllChat=()=>{
+    return apiClient.get("/chat/")
+}
 export {
     loginUser,
     registerUser,
     uploadImage,
     requestForgetPassword,
-    resetPassword
-    
+    resetPassword,
+    SearchUser,
+    CreateAndGetOneOnOneChat,
+    GetAllChat  
 }

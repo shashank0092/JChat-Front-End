@@ -1,6 +1,6 @@
-import ChatDate from "./ChatDate"
-import ReciveMessage from "./ReciveMessage"
-import SendMessage from "./SendMessage"
+import ChatDate from "./component/ChatDate"
+import ReciveMessage from "./component/ReciveMessage"
+import SendMessage from "./component/SendMessage"
 
 const UserChat=()=>{
     return(
