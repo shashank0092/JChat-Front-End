@@ -32,15 +32,15 @@ const ContactNavbar = () => {
                     <div >
                         {/* <img src="https://lh3.googleusercontent.com/a/ACg8ocIeLMQsUtbkaibpEqjroWbELP2mTaJ32VV-8mYzUjn7SRo=s96-c" alt="" className="rounded-full  w-16 " /> */}
                         {
-                            URL_END_POINT && IMAGE_PATH ?
-                            (
-                                <IKImage
-                                urlEndpoint={import.meta.env.VITE_IMAGE_URL_END_POINT}
-                                path={IMAGE_PATH}
-                                className="rounded-full  w-16 "
-                                /> 
-                            ):
-                            (<></>)
+                            // URL_END_POINT && IMAGE_PATH ?
+                            // (
+                            //     <IKImage
+                            //     urlEndpoint={URL_END_POINT}
+                            //     path={IMAGE_PATH}
+                            //     className="rounded-full  w-16 "
+                            //     /> 
+                            // ):
+                            // (<></>)
                         }
                     </div>
                     <BasicModal ModalState={ModalState}   >

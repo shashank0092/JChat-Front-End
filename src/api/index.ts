@@ -52,6 +52,11 @@ const CreateAndGetOneOnOneChat=(data:{email:string})=>{
 const GetAllChat=()=>{
     return apiClient.get("/chat/")
 }
+
+
+const SendMessage=(data:{chatId:String,content:String})=>{
+    return apiClient.post("/message/sendMessage",data)
+}
 export {
     loginUser,
     registerUser,
@@ -60,5 +65,6 @@ export {
     resetPassword,
     SearchUser,
     CreateAndGetOneOnOneChat,
-    GetAllChat  
+    GetAllChat,
+    SendMessage
 }

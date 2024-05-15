@@ -16,9 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
             <AuthZeroProvider>
               <AuthProvider>
-                {/* <SocketProvider> */}
+                <SocketProvider>
                   <App/>
-                {/* </SocketProvider> */}
+                </SocketProvider>
               </AuthProvider>
             </AuthZeroProvider>
         </BrowserRouter>

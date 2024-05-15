@@ -1,8 +1,22 @@
 import { IKImage } from "imagekitio-react";
+import { useEffect } from "react";
 import { IoMdDoneAll } from "react-icons/io";
+import SocketEvents from "../../../../utills/SocketEvents";
+import  { Socket } from "socket.io-client"
 
 
-const Contacts = ({avlaiblechat}: { avlaiblechat: {email: string;about: string;imagePath: string;name: string;}  }) => {
+const Contacts = ({avlaiblechat,socket}: { avlaiblechat: {email: string;about: string;imagePath: string;name: string;},socket:Socket|null  }) => {
+
+  const onMessageReceived=()=>{
+    
+  }
+  useEffect(()=>{
+    socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT,onMessageReceived)
+
+    return()=>{
+      socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT,onMessageReceived)
+    }
+  },[])
   return (
     <>
       <div>
@@ -10,14 +24,12 @@ const Contacts = ({avlaiblechat}: { avlaiblechat: {email: string;about: string;i
           <div className="flex ">
             <div className="">
               <div className="w-fit ">
-               <IKImage
+               {/* <IKImage
                urlEndpoint={import.meta.env.VITE_IMAGE_URL_END_POINT}
                path={avlaiblechat.imagePath}
                width={40}
-               
                className=" rounded-full"
-
-               />
+               /> */}
               </div>
             </div>
             <div className="">

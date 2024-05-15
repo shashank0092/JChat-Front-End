@@ -28,14 +28,14 @@ const UserNavbar=({currentChat}:{currentChat:ChatListInterface|null})=>{
                     <div className="" >
                         {/* <img src="https://lh3.googleusercontent.com/a/ACg8ocIeLMQsUtbkaibpEqjroWbELP2mTaJ32VV-8mYzUjn7SRo=s96-c" alt="" className="rounded-full  w-16 "  /> */}
                         {
-                            IMAGE_URL_END_POINT && participant?(
-                                <IKImage
-                                urlEndpoint={IMAGE_URL_END_POINT}
-                                path={participant[0]?(participant[0].imagePath):("")}
-                                width={30}
-                                className="rounded-full"
-                                />
-                            ):(<></>)
+                            // IMAGE_URL_END_POINT && participant?(
+                            //     <IKImage
+                            //     urlEndpoint={IMAGE_URL_END_POINT}
+                            //     path={participant[0]?(participant[0].imagePath):("")}
+                            //     width={30}
+                            //     className="rounded-full"
+                            //     />
+                            // ):(<></>)
                         }
                     </div>
                     <div>

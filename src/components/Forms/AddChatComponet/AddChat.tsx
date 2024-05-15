@@ -149,10 +149,8 @@ const AddChat:React.FC<{setModalState:Dispatch<SetStateAction<boolean>>}> = ({se
                                 <div className="flex w-fit py-2 px-2 items-center  gap-2 bg-black rounded-full ">
                                   <div>
                                     <IKImage
-                                      urlEndpoint={
-                                        "https://ik.imagekit.io/shashank007/JChat/"
-                                      }
-                                      path="shashank_shukla__NMpnpIV5"
+                                      urlEndpoint={import.meta.env.VITE_IMAGE_URL_END_POINT}
+                                      path={member.imagePath}
                                       width={20}
                                     />
                                   </div>

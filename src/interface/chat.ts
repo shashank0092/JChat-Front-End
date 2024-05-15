@@ -19,16 +19,13 @@ export interface ChatUserDetails{
     name: string;
 }
 
-export interface ChatMessageInterface {
-    _id: string,
-    sender: Pick<UserInterface, "_id" | "imagePath" | "email" | "name">,
-    content: string,
-    chat: string,
-    attachments: {
-        url: string;
-        localPath: string;
-        _id: string;
-    }[];
-    createdAt: string;
-    updatedAt: string;
+export interface ChatMessageInterface{
+    _id:string,
+    sender:Pick<UserInterface,"_id"|"email"|"imagePath">,
+    attachments:null;
+    content:string;
+    chat:string;
+    createdAt:string;
+    updatedAt:string;
+
 }
