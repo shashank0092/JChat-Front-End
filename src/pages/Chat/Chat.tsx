@@ -7,11 +7,11 @@ import BGIMAGE from "../../assets/chatbg.jpg";
 import UserChat from "./components/User/UserChat/UserChat";
 import {ChatListInterface,ChatMessageInterface} from "../../interface/chat"
 import SocketEvents from "../../utills/SocketEvents"
-import { GetAllChat } from "../../api/index";
+import { GetAllChat,getAllMessages } from "../../api/index";
 import { useEffect, useRef, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { useAuth } from "../../context/AuthContext";
-import { LocalStorage } from "../../utills";
+import { LocalStorage, requestHnadler } from "../../utills";
 import { useSocket } from "../../context/SocketContext";
 
 
@@ -41,7 +41,9 @@ const Chat = () => {
 
   const {user}=useAuth()
   const {socket}=useSocket()
+
   const [avliableChats, setAvliableChats] = useState([]);
+  const[loadingMessage,setLoadingMessage]=useState(false)
   const[isConnected,setIsConnected]=useState(false)
   const[chatSelected,setChatSelected]=useState<string>()
   const[messages,setMessages]=useState<ChatMessageInterface[]>([])
@@ -55,28 +57,43 @@ const Chat = () => {
     const chats = await GetAllChat();
     const res = await chats.data?.data;
     setAvliableChats(res);
-    // console.log(avliableChats, "this is our all chats");
+   
   };
 
   const onConnect=()=>{
-    // console.log("this is ruuning connection func")
     setIsConnected(true)
   }
 
   const onDisConnect=()=>{
-    // console.log("this is ruuning dis conn func")
     setIsConnected(false)
   }
 
   const onMessageRecived=(message:ChatMessageInterface)=>{
-    console.log("i am recving message")
-    console.log(message,"this is message")
+    console.log(message,"i am getting message")
     if(message.chat!==currentChat.current?._id){
       setUnReadMessage((prev)=>[message,...prev])
     }
     else{
-      setMessages((prev)=>[message,...prev])
+      setMessages((prev)=>[...prev,message])
     }
+  }
+
+  const getMessages=async()=>{
+
+    if(!currentChat.current?._id) return alert("Not any chat selected")
+    if(!socket) return alert("Not getting socket")
+    socket.emit(SocketEvents.JOIN_CHAT_EVENT,currentChat.current._id)
+    if(currentChat.current._id){
+      requestHnadler(
+        async()=>getAllMessages(currentChat.current?._id),
+        setLoadingMessage,
+        (res)=>{
+          setMessages(res.data.data)
+        },
+        alert
+      )
+    }
+
   }
  
 
@@ -84,25 +101,51 @@ const Chat = () => {
     getChats();
   }, []);
 
-  useEffect(()=>{},[chatSelected])
+  useEffect(()=>{
+    console.log("changes happing in messages")
+  },[messages])
+
+  useEffect(()=>{
+    getMessages()
+  },[currentChat.current?._id])
+  const[isTyping,setIsTyping]=useState(false)
+
+  const handleOnSocketTyping=(chatId:string)=>{
+    if(chatId!==currentChat.current?._id) {
+      return
+    }
+    setIsTyping(true)
+    
+}
+const handleOnSocketStopTyping=(chatid:string)=>{
+    if(chatid!==currentChat.current?._id){
+        return
+    }
+    setIsTyping(false)
+}
+
+ 
 
   useEffect(()=>{
 
     if(!socket) return;
-
-    console.log("running all socket events")
     socket.on(SocketEvents.CONNECTED_EVENT,onConnect)
     socket.on(SocketEvents.DISCONNECT_EVENT,onDisConnect)
     socket.on(SocketEvents.MESSAGE_RECEIVED_EVENT,onMessageRecived)
+    socket?.on(SocketEvents.TYPING_EVENT,handleOnSocketTyping)
+    socket?.on(SocketEvents.STOP_TYPING_EVENT,handleOnSocketStopTyping)
 
 
     return()=>{
       socket.off(SocketEvents.CONNECTED_EVENT,onConnect)
       socket.off(SocketEvents.DISCONNECT_EVENT,onDisConnect)
       socket.off(SocketEvents.MESSAGE_RECEIVED_EVENT,onMessageRecived)
+      socket?.on(SocketEvents.TYPING_EVENT,handleOnSocketTyping)
+      socket?.on(SocketEvents.STOP_TYPING_EVENT,handleOnSocketStopTyping)
+     
     }
     
-  },[socket,avliableChats])
+  },[socket])
 
  
   return (
@@ -127,9 +170,8 @@ const Chat = () => {
                         <div>
                             {
                                 avliableChats.map((chats:AvlaibleChat)=>{
-                                    console.log(chats,"this is chats")
                                     return(
-                                        <div className="" >
+                                        <div className="" key={chats._id} >
                                             {
                                                 chats.participants.map((participant,key)=>{
                                                     return participant.email!==user?.email?
@@ -183,7 +225,7 @@ const Chat = () => {
               </div>
             </div>
           </div>
-          <div className="bg-custome-paper w-[0.1px] h-[95vh]"></div>
+          <div className="bg-custome-paper w-[0.1px] h-[95vh] "></div>
               {
                 chatSelected?(
                   <div className="flex flex-col ">
@@ -191,13 +233,13 @@ const Chat = () => {
                     <UserNavbar currentChat={currentChat.current}  />
                   </div>
                   <div
-                    className=" flex-1 bg-cover bg-center  "
+                    className=" flex-1 bg-cover bg-center overflow-y-auto"
                     style={{ backgroundImage: `url(${BGIMAGE})` }}
                   >
-                    <UserChat />
+                    <UserChat isTyping={isTyping} messages={messages}   />
                   </div>
                   <div>
-                    <ChatFooter socket={socket} currentChat={currentChat.current} />
+                    <ChatFooter socket={socket} currentChat={currentChat.current} setMessages={setMessages} messages={messages} />
                   </div>
                 </div>
                 ):(

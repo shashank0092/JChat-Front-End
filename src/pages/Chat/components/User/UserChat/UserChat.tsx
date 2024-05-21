@@ -1,20 +1,51 @@
+import { log } from "console"
+import Typing from "../../../../../components/Typing/Typing"
+import { ChatMessageInterface } from "../../../../../interface/chat"
 import ChatDate from "./component/ChatDate"
 import ReciveMessage from "./component/ReciveMessage"
 import SendMessage from "./component/SendMessage"
+import { LocalStorage } from "../../../../../utills"
+import { useEffect } from "react"
 
-const UserChat=()=>{
+
+const UserChat=({isTyping,messages}:{isTyping:boolean,messages:ChatMessageInterface[]})=>{
+    useEffect(()=>{
+        console.log("changing in messages in user chat file",messages)
+    },[messages])
+
+    
     return(
         <>
-            <div>
+            <div className="px-5 pt-3" >
                 <div>
                     <ChatDate/>
                 </div>
-                <div>
-                    <SendMessage/>
-                </div>
-                <div>
-                    <ReciveMessage/>
-                </div>
+               {
+                messages.length==0?(<></>):(
+                    <>
+                        <div className="flex flex-col gap-5 " >
+                            {
+                                messages.map((message)=>{
+                                  return(
+                                    <>
+                                        {
+                                            message.sender?.email==LocalStorage.get("user").email?
+                                            (<div className="bg-white w-fit p-3 rounded-xl " >
+                                                <p>{message.content}</p>
+                                            </div>):
+                                            (<div className="bg-yellow-700 w-fit p-3 rounded-xl place-self-end " >{message.content}</div>)
+                                        }
+                                    </>
+                                  )
+                                })
+                            }
+                        </div>
+                    </>
+                )
+               }
+               {
+                isTyping?( <> <Typing/> </> ):(<></>)
+               }
             </div>
         </>
     )

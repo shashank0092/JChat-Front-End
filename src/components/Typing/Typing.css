@@ -1,0 +1,23 @@
+
+@keyframes wave {
+    0%, 60%, 100% {
+        transform: initial;
+    }
+    30% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-dot1 {
+    animation: wave 1.2s infinite ease-in-out;
+    animation-delay: -0.32s;
+}
+
+.animate-dot2 {
+    animation: wave 1.2s infinite ease-in-out;
+    animation-delay: -0.16s;
+}
+
+.animate-dot3 {
+    animation: wave 1.2s infinite ease-in-out;
+}
