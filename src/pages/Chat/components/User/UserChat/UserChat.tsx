@@ -30,10 +30,34 @@ const UserChat=({isTyping,messages}:{isTyping:boolean,messages:ChatMessageInterf
                                     <>
                                         {
                                             message.sender?.email==LocalStorage.get("user").email?
-                                            (<div className="bg-white w-fit p-3 rounded-xl " >
+                                            (
+                                                message.attachments.length>0?(
+                                                    message.attachments.map((attachment)=>{
+                                                        return(
+                                                            <div className="w-1/4  h-1/4 bg-white p-5 rounded-3xl" >
+                                                                <img src={attachment.url} alt="send-image" className="h-1/2"   />
+                                                            </div>
+                                                        )
+                                                    })
+                                                )
+                                                :
+                                                (<><div className="bg-white w-fit p-3 rounded-xl " >
                                                 <p>{message.content}</p>
-                                            </div>):
-                                            (<div className="bg-yellow-700 w-fit p-3 rounded-xl place-self-end " >{message.content}</div>)
+                                            </div></>)
+                                            ):
+                                            (
+                                            message.attachments?.length>0?(
+                                                message.attachments.map((attachment)=>{
+                                                    return(
+                                                        <div className="w-1/4 h-1/4 bg-yellow-700 p-5 rounded-3xl" >
+                                                            <img src={attachment.url} alt="send-image" className="h-1/2"   />
+                                                        </div>
+                                                    )
+                                                }) 
+                                            ):(
+                                                <div className="bg-yellow-700 w-fit p-3 rounded-xl place-self-end " >{message.content}</div>
+                                            )
+                                            )
                                         }
                                     </>
                                   )

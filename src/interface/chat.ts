@@ -22,7 +22,7 @@ export interface ChatUserDetails{
 export interface ChatMessageInterface{
     _id:string,
     sender:Pick<UserInterface,"_id"|"email"|"imagePath">,
-    attachments:null;
+    attachments:[{url:string,localPath:string}]|null;
     content:string;
     chat:string;
     createdAt:string;

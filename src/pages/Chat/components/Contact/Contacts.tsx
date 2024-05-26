@@ -17,11 +17,13 @@ const Contacts = ({avlaiblechat,socket}: { avlaiblechat: {email: string;about: s
       socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT,onMessageReceived)
     }
   },[])
+  const URL_END_POINT=import.meta.env.VITE_IMAGE_URL_END_POINT
+    const IMAGE_PATH=avlaiblechat.imagePath
   return (
     <>
       <div>
         <div className="flex justify-between  py-4 ml-5 mr-5 bg-chat-child-container items-center">
-          <div className="flex ">
+          <div className="flex gap-5 items-center">
             <div className="">
               <div className="w-fit ">
                {/* <IKImage
@@ -30,6 +32,7 @@ const Contacts = ({avlaiblechat,socket}: { avlaiblechat: {email: string;about: s
                width={40}
                className=" rounded-full"
                /> */}
+               <img src={`${URL_END_POINT}/${IMAGE_PATH}`} alt="" width={40} className="rounded-lg" />
               </div>
             </div>
             <div className="">

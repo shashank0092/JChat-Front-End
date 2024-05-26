@@ -42,6 +42,7 @@ const ContactNavbar = () => {
                             // ):
                             // (<></>)
                         }
+                        <img src={`${URL_END_POINT}/${IMAGE_PATH}`} alt="" className="rounded-full  w-16 " />
                     </div>
                     <BasicModal ModalState={ModalState}   >
                         <AddChat  setModalState={setModalState} />

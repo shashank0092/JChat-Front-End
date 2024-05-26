@@ -37,6 +37,11 @@ const UserNavbar=({currentChat}:{currentChat:ChatListInterface|null})=>{
                             //     />
                             // ):(<></>)
                         }
+                        <img 
+                        src={`${IMAGE_URL_END_POINT}/${participant[0]?(participant[0].imagePath):("")}`} 
+                        width={30}
+                        className="rounded-full" 
+                        alt="" />
                     </div>
                     <div>
                         <div>

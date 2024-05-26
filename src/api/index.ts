@@ -53,8 +53,17 @@ const GetAllChat=()=>{
 }
 
 
-const SendMessage=(data:{chatId:String,content:String})=>{
-    return apiClient.post("/message/sendMessage",data)
+const SendMessage=(data:{chatId:string,content:string,attachments:File[]})=>{
+
+    const formData=new FormData()
+    if(data.content){
+        formData.append("content",data.content)
+    }
+    data.attachments.map((file:File)=>{
+        formData.append("attachments",file)
+    })
+    console.log(data.attachments,"this all are attcha api")
+    return apiClient.post(`/message/sendMessage/${data.chatId}`,formData)
 }
 const getAllMessages=(chatId:string|undefined)=>{
     return apiClient.get(`/message/getMessages/${chatId}`)
