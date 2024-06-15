@@ -21,9 +21,7 @@ const AddChat:React.FC<{setModalState:Dispatch<SetStateAction<boolean>>}> = ({se
   const SearchEmailUser = async (email: string) => {
     const user = await SearchUser({ email });
     const userDetails = await user.data?.data?.data;
-    // console.log(userDetails,"this is userDetails")
     setAvailableUser(userDetails);
-    // console.log(availableUser,"this is aviabn")
   };
 
   console.log(selectedGroupMember, "this is our group me");

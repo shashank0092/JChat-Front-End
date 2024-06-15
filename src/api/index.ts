@@ -4,8 +4,8 @@ import { LocalStorage } from "../utills"
 
 const apiClient=axios.create({
     baseURL:import.meta.env.VITE_SERVER_URL,
-    withCredentials:true,
-    timeout:120000
+    // withCredentials:true,
+    // timeout:120000
 })
 
 apiClient.interceptors.request.use(
@@ -21,6 +21,7 @@ apiClient.interceptors.request.use(
 )
 
 const loginUser=(data:{email:string,password?:string})=>{
+    console.log("there is happening api call")
     return apiClient.post("/user/login",data)
 }
 

@@ -18,7 +18,7 @@ const RegisterSchema = Yup.object().shape({
 
 const RegisterForm = () => {
 
-    const[avtar,setImageURL]=useState("https://ik.imagekit.io/shashank007/user.png?updatedAt=1711368383571")
+    const[avtar,setImageURL]=useState("https://ik.imagekit.io/shashank007/user.jpg?updatedAt=1717232443506")
     const[imagePath,setImagePath]=useState("")
     const {register}=useAuth()
     

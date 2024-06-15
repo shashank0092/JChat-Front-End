@@ -58,11 +58,15 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
     const login = async (data: { email: string, password?: string }) => {
         // console.log(data,"this is consoling data")
+        console.log("running here the boi")
+        const res=await loginUser(data)
+        console.log(res,"this is res")
         await requestHnadler(
             async () => await loginUser(data),
             setLoading,
             (res) => {
                 const { data } = res
+
                 console.log(res, "this is response")
                 if (res.statusCode == 200) {
                     setUser(data.user)
