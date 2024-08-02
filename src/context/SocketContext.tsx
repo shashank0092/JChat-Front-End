@@ -6,7 +6,7 @@ import {LocalStorage} from "../utills/index"
 const getSocket=()=>{
     const token=LocalStorage.get("token")
     return socketio("https://jchat-backend.onrender.com/",{
-        withCredentials:true,
+        // withCredentials:true,
         auth:{token}
     })
 }
