@@ -6,9 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext.tsx'
 import { SocketProvider } from './context/SocketContext.tsx'
 
-
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
+
 
 
   <>

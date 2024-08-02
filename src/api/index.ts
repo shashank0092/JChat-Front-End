@@ -1,9 +1,10 @@
 import axios from "axios"
 import { LocalStorage } from "../utills"
 
+console.log(import.meta.env.VITE_SERVER_URL)
 
 const apiClient=axios.create({
-    baseURL:import.meta.env.VITE_SERVER_URL,
+    baseURL:"http://192.168.89.156:8000/api/v1/",
     // withCredentials:true,
     // timeout:120000
 })
@@ -61,6 +62,7 @@ const SendMessage=(data:{chatId:string,content:string,attachments:File[]})=>{
         formData.append("content",data.content)
     }
     data.attachments.map((file:File)=>{
+        console.log(file)
         formData.append("attachments",file)
     })
     console.log(data.attachments,"this all are attcha api")

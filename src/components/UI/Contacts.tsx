@@ -1,24 +1,26 @@
-import { IKImage } from "imagekitio-react";
 import { useEffect } from "react";
 import { IoMdDoneAll } from "react-icons/io";
-import SocketEvents from "../../../../utills/SocketEvents";
-import  { Socket } from "socket.io-client"
+import SocketEvents from "../../utills/SocketEvents";
+import CallIcon from '@mui/icons-material/Call';
+import { Socket } from "socket.io-client"
+import { IconButton, Tooltip } from "@mui/material";
 
 
-const Contacts = ({avlaiblechat,socket}: { avlaiblechat: {email: string;about: string;imagePath: string;name: string;},socket:Socket|null  }) => {
+const Contacts = ({ avlaiblechat, socket, isVoiceCall }:
+  { avlaiblechat: { email: string; about: string; imagePath: string; name: string; }, socket: Socket | null, isVoiceCall?: boolean | false }) => {
 
-  const onMessageReceived=()=>{
-    
+  const onMessageReceived = () => {
+
   }
-  useEffect(()=>{
-    socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT,onMessageReceived)
+  useEffect(() => {
+    socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT, onMessageReceived)
 
-    return()=>{
-      socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT,onMessageReceived)
+    return () => {
+      socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT, onMessageReceived)
     }
-  },[])
-  const URL_END_POINT=import.meta.env.VITE_IMAGE_URL_END_POINT
-    const IMAGE_PATH=avlaiblechat.imagePath
+  }, [])
+  const URL_END_POINT = import.meta.env.VITE_IMAGE_URL_END_POINT
+  const IMAGE_PATH = avlaiblechat.imagePath
   return (
     <>
       <div>
@@ -26,20 +28,20 @@ const Contacts = ({avlaiblechat,socket}: { avlaiblechat: {email: string;about: s
           <div className="flex gap-5 items-center">
             <div className="">
               <div className="w-fit ">
-               {/* <IKImage
+                {/* <IKImage
                urlEndpoint={import.meta.env.VITE_IMAGE_URL_END_POINT}
                path={avlaiblechat.imagePath}
                width={40}
                className=" rounded-full"
                /> */}
-               <img src={`${URL_END_POINT}/${IMAGE_PATH}`} alt="" width={40} className="rounded-lg" />
+                <img src={`${URL_END_POINT}/${IMAGE_PATH}`} alt="" width={40} className="rounded-lg" />
               </div>
             </div>
             <div className="">
               <div>
                 <p className="text-white text-lg font-some-type-mono">{avlaiblechat.name}</p>
               </div>
-              <div className="flex items-center">
+              <div className={`${isVoiceCall ? "hidden" : "flex items-center"}`} >
                 <div>
                   <IoMdDoneAll color="blue" />
                 </div>
@@ -52,10 +54,17 @@ const Contacts = ({avlaiblechat,socket}: { avlaiblechat: {email: string;about: s
             </div>
           </div>
           <div className="pr-5">
-            <div>
+            <div className={`${isVoiceCall ? "hidden" : ""}`} >
               <p className="text-chat-text text-sm font-some-type-mono">
                 04/12/2023
               </p>
+            </div>
+            <div className={`${isVoiceCall?"flex":"hidden"} `}  >
+              <Tooltip title="Make Call"   >
+                <IconButton sx={{ color: "green" }}   >
+                  <CallIcon sx={{ fontSize: "30px" }} />
+                </IconButton>
+              </Tooltip>
             </div>
           </div>
         </div>

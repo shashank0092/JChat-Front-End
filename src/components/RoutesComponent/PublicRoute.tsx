@@ -6,7 +6,7 @@ const PublicRoute:React.FC<{children:ReactNode}> =({children})=>{
 
     const {token,user}=useAuth()
     if(token && user?._id) return <Navigate to="/chat" replace />
-    return children
+    return children as React.ReactElement
 }
 
 export default PublicRoute

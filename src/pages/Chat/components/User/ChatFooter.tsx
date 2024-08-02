@@ -36,6 +36,8 @@ const ChatFooter = ({
     string | undefined
   >();
 
+  console.log(isTyping)
+
   const handleOnSocketTyping = (chatId: string) => {
     if (chatId !== currentChat?._id) {
       return;
@@ -123,18 +125,6 @@ const ChatFooter = ({
     console.log("handling image change")
     if (e.target.files) {
       setAttachedFiles([...e.target.files]);
-    //   const image = document.getElementById(
-    //     "uploadedImage"
-    //   ) as HTMLImageElement;
-    //   if (image) {
-    //     attachedFiles.map((file) => {
-    //     console.log(file,'this is file name')
-    //       const IMGEURL = URL.createObjectURL(file);
-    //       SetUploadedImageSrc(IMGEURL);
-    //       image.src = URL.createObjectURL(file);
-    //       return "";
-    //     });
-    //   }
     }
   };
 

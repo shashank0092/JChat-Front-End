@@ -7,15 +7,18 @@ import ForgetPassword from "./pages/ForgetPassword/ForgetPassword"
 import { useAuth } from "./context/AuthContext"
 import PrivateRoute from "./components/RoutesComponent/PrivateRoute"
 import PublicRoute from "./components/RoutesComponent/PublicRoute"
+import VoiceCall from "./pages/VoiceCall/VoiceCall"
+import VideoCall from "./pages/VideoCall/VideoCall"
+
+
 
 
 
 const App: React.FC = () => {
-  console.log(import.meta.env.VITE_APP_URL, "this is main env")
   const { token, user } = useAuth()
   return (
     <>
-
+  
 
       <Routes>
 
@@ -30,7 +33,7 @@ const App: React.FC = () => {
           }
         ></Route>
 
-
+       
         <Route
           path="/chat"
           element={
@@ -38,6 +41,24 @@ const App: React.FC = () => {
               <Chat />
             </PrivateRoute>
           }
+        />
+
+        <Route
+        path="/voiceCall"
+        element={
+          <PrivateRoute>
+            <VoiceCall/>
+          </PrivateRoute>
+        }
+        />
+
+      <Route
+        path="/videoCall"
+        element={
+          <PrivateRoute>
+            <VideoCall/>
+          </PrivateRoute>
+        }
         />
 
         <Route

@@ -4,11 +4,13 @@ import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import BasicModal from "../../../../components/Base/Modal";
-import AddChat from "../../../../components/Forms/AddChatComponet/AddChat";
-import { useState } from "react";
-import {IKImage} from "imagekitio-react"
-import { useAuth } from "../../../../context/AuthContext";
+import BasicModal from "../Base/Modal";
+import AddChat from "../Forms/AddChatComponet/AddChat";
+import { useEffect, useState } from "react";
+import MessageIcon from '@mui/icons-material/Message';
+import { useAuth } from "../../context/AuthContext";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 
 
 
@@ -16,6 +18,12 @@ import { useAuth } from "../../../../context/AuthContext";
 const ContactNavbar = () => {
 
     const[ModalState,setModalState]=useState(false)
+    const[currentLink,setCurrentLink]=useState<string>("")
+    const navigate=useNavigate()
+    const location=useLocation()
+    useEffect(()=>{
+       setCurrentLink( location.pathname.split("/")[1])
+    },[])
     const OpenModal=()=>{
         setModalState(true)
     }
@@ -57,18 +65,31 @@ const ContactNavbar = () => {
                                 </IconButton>
                             </Tooltip>
                         </div>
-                        <div >
-                            <Tooltip title="Voice Call Logs" >
-                                <IconButton sx={{color:"white"}}  >
-                                    <LocalPhoneIcon sx={{fontSize:"30px"}}  />
-                                </IconButton>
-                            </Tooltip>
+                        <div className={`${currentLink=="chat"?("bg-chat-container p-1 rounded-lg"):("")}`} >
+                            <Link to="/chat" >
+                                <Tooltip title="Chats"   >
+                                    <IconButton sx={{color:"white"}} onClick={()=>navigate("/chat")}  >
+                                        <MessageIcon sx={{fontSize:"30px"}}  />
+                                    </IconButton>
+                                </Tooltip>
+                            </Link>
                         </div>
-                        <div >
-                            <Tooltip title="Video Call Logs" >
-                                <IconButton  sx={{color:"white"}}>
+                        <div className={`${currentLink=="voiceCall"?("bg-chat-container p-1 rounded-lg"):("")}`} >
+                            <Link to="/voiceCall" >
+                                <Tooltip title="Voice Call Logs" >
+                                    <IconButton sx={{color:"white"}} onClick={()=>navigate("/voiceCall")}  >
+                                        <LocalPhoneIcon sx={{fontSize:"30px"}}  />
+                                    </IconButton>
+                                </Tooltip>
+                            </Link>
+                        </div>
+                        <div className={`${currentLink=="videoCall"?("bg-chat-container p-1 rounded-lg"):("")}`} >
+                            <Tooltip title="Video Call Logs"  >
+                                <Link to="/videoCall" >
+                                <IconButton  sx={{color:"white"}} >
                                     <VideocamIcon sx={{fontSize:"30px"}} />
                                 </IconButton>
+                                </Link>
                             </Tooltip>
                         </div>
                         <div >

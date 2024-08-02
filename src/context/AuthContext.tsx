@@ -18,6 +18,7 @@ const AuthContext = createContext<
         resetpassword:(data:{resetToken:string,newPassword:string})=>Promise<void>
         logout: () => Promise<void>,
         
+        
     }
 
 
@@ -29,6 +30,7 @@ const AuthContext = createContext<
     requestforgetpassword:async()=>{},
     resetpassword:async()=>{},
     logout: async () => { },
+    
     
 })
 
@@ -123,7 +125,16 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
    
     return (
-        <AuthContext.Provider value={{ user, login, register, logout, token,requestforgetpassword,resetpassword }} >
+        <AuthContext.Provider value={{ 
+            user, 
+            login, 
+            register, 
+            logout, 
+            token,
+            requestforgetpassword,
+            resetpassword,
+            
+            }} >
 
             {
                 isLoading ? 

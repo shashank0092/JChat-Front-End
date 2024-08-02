@@ -1,12 +1,14 @@
 import React,{ReactNode} from "react"
 import { Navigate } from "react-router-dom"
-import { useAuth } from "../../context/AuthContext"
+import { LocalStorage } from "../../utills"
 
 const PrivateRoute:React.FC<{children:ReactNode}>=({children})=>{
-    const {token,user}=useAuth()
-
+    
+    const token=LocalStorage.get("token")
+    const user=LocalStorage.get("user")
+    console.log(children,"this is childrenms")
     if(!token||!user?._id) return <Navigate to="/login" replace />
-    return children
+    return children as React.ReactElement
 }   
 
 export default PrivateRoute

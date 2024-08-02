@@ -1,9 +1,6 @@
-import { log } from "console"
 import Typing from "../../../../../components/Typing/Typing"
 import { ChatMessageInterface } from "../../../../../interface/chat"
 import ChatDate from "./component/ChatDate"
-import ReciveMessage from "./component/ReciveMessage"
-import SendMessage from "./component/SendMessage"
 import { LocalStorage } from "../../../../../utills"
 import { useEffect } from "react"
 
@@ -25,7 +22,7 @@ const UserChat=({isTyping,messages}:{isTyping:boolean,messages:ChatMessageInterf
                     <>
                         <div className="flex flex-col gap-5 " >
                             {
-                                messages.map((message)=>{
+                                messages.map((message:ChatMessageInterface)=>{
                                   return(
                                     <>
                                         {

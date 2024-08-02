@@ -3,7 +3,6 @@ import { IoCall } from "react-icons/io5";
 import { MdVideoCall } from "react-icons/md";
 import { CiMenuKebab } from "react-icons/ci";
 import {ChatListInterface,ChatUserDetails} from "../../../../interface/chat"
-import { IKImage } from "imagekitio-react";
 import { useAuth } from "../../../../context/AuthContext";
 
 
@@ -13,7 +12,7 @@ const UserNavbar=({currentChat}:{currentChat:ChatListInterface|null})=>{
 
 
     const {user}=useAuth()
-    const IMAGE_URL_END_POINT=import.meta.env.VITE_IMAGE_URL_END_POINT
+    // const IMAGE_URL_END_POINT=import.meta.env.VITE_IMAGE_URL_END_POINT
     const participant=currentChat?.participants.map((participant:ChatUserDetails)=>
     {
         if(participant.email!==user?.email){
@@ -38,7 +37,8 @@ const UserNavbar=({currentChat}:{currentChat:ChatListInterface|null})=>{
                             // ):(<></>)
                         }
                         <img 
-                        src={`${IMAGE_URL_END_POINT}/${participant[0]?(participant[0].imagePath):("")}`} 
+                        // src={`${IMAGE_URL_END_POINT}/${participant[0]?(participant[0].imagePath):("")}`} 
+                        // src={`${IMAGE_URL_END_POINT}/`}
                         width={30}
                         className="rounded-full" 
                         alt="" />

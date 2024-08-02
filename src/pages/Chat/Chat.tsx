@@ -1,7 +1,7 @@
 import ChatFooter from "./components/User/ChatFooter";
-import ContactNavbar from "./components/Contact/ContactNavbar";
-import Contacts from "./components/Contact/Contacts";
-import SearchContact from "./components/Contact/SearchContact";
+import ContactNavbar from "../../components/UI/ContactNavbar";
+import Contacts from "../../components/UI/Contacts";
+import SearchContact from "../../components/UI/SearchContact";
 import UserNavbar from "./components/User/UserNavbar";
 import BGIMAGE from "../../assets/chatbg.jpg";
 import UserChat from "./components/User/UserChat/UserChat";
@@ -49,6 +49,8 @@ const Chat = () => {
   const [attachedFiles, setAttachedFiles] = useState<File[]>([]);
   const currentChat = useRef<ChatListInterface | null>(null);
 
+  console.log(loadingMessage,isConnected,unreadMessage)
+
   const getChats = async () => {
     const chats = await GetAllChat();
     const res = await chats.data?.data;
@@ -73,7 +75,7 @@ const Chat = () => {
   };
 
   const getMessages = async () => {
-    if (!currentChat.current?._id) return alert("Not any chat selected");
+    if (!currentChat.current?._id) return ""
     if (!socket) return alert("Not getting socket");
     socket.emit(SocketEvents.JOIN_CHAT_EVENT, currentChat.current._id);
     if (currentChat.current._id) {
