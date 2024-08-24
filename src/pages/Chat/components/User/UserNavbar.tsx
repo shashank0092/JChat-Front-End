@@ -2,46 +2,48 @@
 import { IoCall } from "react-icons/io5";
 import { MdVideoCall } from "react-icons/md";
 import { CiMenuKebab } from "react-icons/ci";
-import {ChatListInterface,ChatUserDetails} from "../../../../interface/chat"
+import { ChatListInterface, ChatUserDetails } from "../../../../interface/chat"
 import { useAuth } from "../../../../context/AuthContext";
+import { useEffect, useState } from "react";
+import { GetS3KeyImageParser } from "../../../../utills/ImageKeyParse";
 
 
 
 
-const UserNavbar=({currentChat}:{currentChat:ChatListInterface|null})=>{
+const UserNavbar = ({ currentChat }: { currentChat: ChatListInterface | null }) => {
 
 
-    const {user}=useAuth()
+    const { user } = useAuth()
+    const [imageLink, setimageLink] = useState("")
+    useEffect(() => {
+        SetUserImage()
+    }, [])
+
+
     // const IMAGE_URL_END_POINT=import.meta.env.VITE_IMAGE_URL_END_POINT
-    const participant=currentChat?.participants.map((participant:ChatUserDetails)=>
-    {
-        if(participant.email!==user?.email){
+    const participant = currentChat?.participants.map((participant: ChatUserDetails) => {
+        if (participant.email !== user?.email) {
             return participant
         }
     }
-    ).filter((participent)=>participent!==undefined)
-    return(
+    ).filter((participent) => participent !== undefined)
+
+    const SetUserImage = async () => {
+       
+        const s3URL = await GetS3KeyImageParser(participant[0].attachment[0].url)
+        console.log(s3URL, "shukla bi")
+        setimageLink(s3URL)
+    }
+    return (
         <>
             <div className="flex items-center bg-chat-child-container w-[61.9vw] justify-between py-5 pl-5 pr-20" >
                 <div className="flex items-center gap-2" >
                     <div className="" >
-                        {/* <img src="https://lh3.googleusercontent.com/a/ACg8ocIeLMQsUtbkaibpEqjroWbELP2mTaJ32VV-8mYzUjn7SRo=s96-c" alt="" className="rounded-full  w-16 "  /> */}
-                        {
-                            // IMAGE_URL_END_POINT && participant?(
-                            //     <IKImage
-                            //     urlEndpoint={IMAGE_URL_END_POINT}
-                            //     path={participant[0]?(participant[0].imagePath):("")}
-                            //     width={30}
-                            //     className="rounded-full"
-                            //     />
-                            // ):(<></>)
-                        }
-                        <img 
-                        // src={`${IMAGE_URL_END_POINT}/${participant[0]?(participant[0].imagePath):("")}`} 
-                        // src={`${IMAGE_URL_END_POINT}/`}
-                        width={30}
-                        className="rounded-full" 
-                        alt="" />
+                        <img
+                            src={imageLink}
+                            width={30}
+                            className="rounded-full"
+                            alt="" />
                     </div>
                     <div>
                         <div>
@@ -51,15 +53,15 @@ const UserNavbar=({currentChat}:{currentChat:ChatListInterface|null})=>{
                 </div>
                 <div>
                     <div className="flex gap-12" >
-                      
+
                         <div className="hover:cursor-pointer">
-                            <IoCall size={25} color="white"/>
+                            <IoCall size={25} color="white" />
                         </div>
                         <div className="hover:cursor-pointer">
-                            <MdVideoCall size={25} color="white"/>
+                            <MdVideoCall size={25} color="white" />
                         </div>
                         <div className="hover:cursor-pointer">
-                            <CiMenuKebab size={25} color="white"/>
+                            <CiMenuKebab size={25} color="white" />
                         </div>
                     </div>
                 </div>

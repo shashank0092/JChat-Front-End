@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@aws-sdk/client-s3": "^3.627.0",
+    "@aws-sdk/s3-request-presigner": "^3.627.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fullpage/react-fullpage": "^0.1.40",
@@ -19,6 +21,7 @@
     "@reduxjs/toolkit": "^2.1.0",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.12",
+    "@types/webspeechapi": "^0.0.29",
     "apexcharts": "^3.45.2",
     "axios": "^1.6.7",
     "dotenv": "^16.4.4",

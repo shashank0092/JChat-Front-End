@@ -14,11 +14,18 @@ import { useAuth } from "../../context/AuthContext";
 import { LocalStorage, requestHnadler } from "../../utills";
 import { useSocket } from "../../context/SocketContext";
 
+interface Attachment {
+  url: string;
+  type: string;
+  name:string;
+  size:Number
+}
+
 interface AvlaibleChat {
   participants: Array<{
     email: string;
     about: string;
-    imagePath: string;
+    attachment: [Attachment];
     name: string;
     phoneNumber: string;
     createdAt: string;
@@ -150,7 +157,7 @@ const Chat = () => {
                   <div>
                     {avliableChats.map((chats: AvlaibleChat) => {
                       return (
-                        <div className="" key={chats._id}>
+                        <div className="" key={chats.updatedAt} >
                           {chats.participants.map((participant, key) => {
                             return participant.email !== user?.email ? (
                               <div

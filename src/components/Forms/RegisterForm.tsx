@@ -19,7 +19,7 @@ const RegisterSchema = Yup.object().shape({
 const RegisterForm = () => {
 
     const[avtar,setImageURL]=useState("https://ik.imagekit.io/shashank007/user.jpg?updatedAt=1717232443506")
-    const[imagePath,setImagePath]=useState("")
+    const[attachments,setAttachments]=useState<File>()
     const {register}=useAuth()
     
     const name="shashank shukla"
@@ -45,7 +45,7 @@ const RegisterForm = () => {
                         const phoneNumber=values.phoneNumber
                         const password=values.password
                         
-                        register({name,email,about,phoneNumber,password,imagePath})
+                        register({name,email,about,phoneNumber,password,attachments})
                     }}
 
                     validationSchema={RegisterSchema}
@@ -154,7 +154,7 @@ const RegisterForm = () => {
                                         </div>
                                         <div className='flex flex-col items-center gap-5' >
 
-                                            <ImageUpload name={name} imageURL={avtar} setImageURL={setImageURL} setImagePath={setImagePath}  />
+                                            <ImageUpload name={name} imageURL={avtar} setImageURL={setImageURL} setAttachments={setAttachments}  />
                                          
                                         </div>
 

@@ -4,7 +4,7 @@ import { LocalStorage } from "../utills"
 console.log(import.meta.env.VITE_SERVER_URL)
 
 const apiClient=axios.create({
-    baseURL:"https://jchat-backend.onrender.com/api/v1/",
+    baseURL:"http://192.168.89.156:8000/api/v1/",
     // withCredentials:true,
     // timeout:120000
 })
@@ -26,8 +26,21 @@ const loginUser=(data:{email:string,password?:string})=>{
     return apiClient.post("/user/login",data)
 }
 
-const registerUser=(data:{name:string,about:string,email:string,phoneNumber:string,password:string,imagePath:string})=>{
-    return apiClient.post("/user/register",data)
+const registerUser=(data:{name:string,about:string,email:string,phoneNumber:string,password:string,attachments:File|undefined})=>{
+    const formData=new FormData()
+
+    if(data.name && data.about && data.email && data.phoneNumber && data.password ){
+        formData.append("name",data.name)
+        formData.append("about",data.about)
+        formData.append("email",data.email)
+        formData.append("phoneNumber",data.phoneNumber)
+        formData.append("password",data.password)
+    }
+    if(data.attachments){
+        formData.append("attachments",data.attachments)
+    }
+    
+    return apiClient.post("/user/register",formData)
 }
 
 const requestForgetPassword=(data:{email:string})=>{
