@@ -5,7 +5,7 @@ import {LocalStorage} from "../utills/index"
 
 const getSocket=()=>{
     const token=LocalStorage.get("token")
-    return socketio("http://192.168.89.156:8000/",{
+    return socketio("http://192.168.155.156:8000/",{
         // withCredentials:true,
         auth:{token}
     })

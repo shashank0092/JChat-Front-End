@@ -10,11 +10,6 @@ import { useEffect, useState } from "react";
 import MessageIcon from '@mui/icons-material/Message';
 import { useAuth } from "../../context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { GetS3KeyImageParser } from "../../utills/ImageKeyParse";
-
-
-
-
 
 const ContactNavbar = () => {
 
@@ -24,28 +19,20 @@ const ContactNavbar = () => {
     const location = useLocation()
     useEffect(() => {
         setCurrentLink(location.pathname.split("/")[1])
-        SetUserImage()
     }, [])
     const OpenModal = () => {
         setModalState(true)
     }
-
-    const [imageLink, setimageLink] = useState("")
     const { user } = useAuth()
-    console.log(user?.attachment[0].url)
-    const SetUserImage = async () => {
-
-        const s3URL = await GetS3KeyImageParser(user?.attachment[0].url)
-
-        setimageLink(s3URL)
-    }
+    console.log(user?.mediaLink[0].url)
+    
 
     return (
         <>
             <div className="flex items-center bg-chat-child-container w-[35vw] justify-between py-5 pl-5 pr-20" >
                 <div>
                     <div className="w" >
-                        <img src={imageLink} alt="" className="rounded-full   " />
+                        <img src={user?.mediaLink[0].url} alt="" className="rounded-full   " />
                     </div>
 
                 </div>

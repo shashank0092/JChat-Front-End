@@ -7,6 +7,8 @@ interface ImportMetaEnv{
     readonly VITE_IMAGE_PRIVATE_KEY:string,
     readonly VITE_AWS_ACCESS_KEY_ID:string,
     readonly VITE_AWS_SECRET_ACCESS_KEY:string,
-    readonly VITE_AWS_REGION:string
+    readonly VITE_AWS_REGION:string,
+    readonly VITE_CLOUD_FRONT_KEY_PAIR_ID:string,
+    readonly VITE_CLOUD_FRONT_PRIVATE_KEY:string
 }
 

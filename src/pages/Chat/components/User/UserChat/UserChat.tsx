@@ -3,39 +3,14 @@ import { ChatMessageInterface } from "../../../../../interface/chat";
 import ChatDate from "./component/ChatDate";
 import { LocalStorage } from "../../../../../utills";
 import { useEffect, useState } from "react";
-import { GetS3KeyImageParser } from "../../../../../utills/ImageKeyParse";
-import { IMAGES_EXTENSTIONS,VIDEOS_EXTENSTION } from "../../../../../utills/MediaTypes";
+import { IMAGES_EXTENSTIONS, VIDEOS_EXTENSTION } from "../../../../../utills/MediaTypes";
 
 const UserChat = ({ isTyping, messages }: { isTyping: boolean; messages: ChatMessageInterface[] }) => {
-  const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    const fetchImageUrls = async () => {
-      const urls: { [key: string]: string } = {};
-      for (const message of messages) {
-        if (message.attachments && message.attachments.length > 0) {
-          for (const attachment of message.attachments) {
-            if (!imageUrls[attachment.url]) { // Avoid refetching already fetched URLs
-              try {
-               
-                const url = await GetS3KeyImageParser(attachment.url);
-                urls[attachment.url] = url;
-                console.log(urls)
-              } catch (error) {
-                console.error("Error fetching image URL:", error);
-              }
-            }
-          }
-        }
-      }
-      
-      setImageUrls((prevUrls) => ({ ...prevUrls, ...urls }));
 
-    };
-    
-    fetchImageUrls();
-  }, [messages]);
-
+  }, [messages])
+  console.log(messages, "this is messages")
   return (
     <>
       <div className="px-5 pt-3">
@@ -46,51 +21,43 @@ const UserChat = ({ isTyping, messages }: { isTyping: boolean; messages: ChatMes
           <></>
         ) : (
           <div className="flex flex-col gap-5">
-            {messages.map((message: ChatMessageInterface, index) => (
-              <div key={index}  className="flex flex-col gap-5" >
-                {message.sender?.email == LocalStorage.get("user").email ? (
-                  message.attachments.length > 0 ? (
-                    message.attachments.map((attachment, i) => (
+            {messages?.map((message: ChatMessageInterface, index) => (
+              <div key={index} className="flex flex-col gap-5" >
+                {message?.sender?.email == LocalStorage.get("user").email ? (
+                  message?.mediaLink?.length > 0 ? (
+                    message?.mediaLink?.map((media, i) => (
                       <div key={i} className="w-1/4 h-1/4 bg-white p-5 rounded-3xl">
-
                         {
-                          IMAGES_EXTENSTIONS.includes(attachment.type)
-                          
-                          ?(
-                            
+                          IMAGES_EXTENSTIONS.includes(media.type)
+                            ? (
+                              <>
+                                {/* Correctly log the URL here */}
+                                {console.log(media.url, "this is url")}
+                                {/* Example display for an image */}
+                                <img src={media.url} alt="send-image" className="h-1/2" />
+                              </>
+                            ) : (<></>)
+                        }
+                        {
+                          VIDEOS_EXTENSTION.includes(media.type) ? (
                             <>
-                            
-                             <img 
-                                src={imageUrls[attachment.url] || ""} 
-                                alt="send-image" 
-                                className="h-1/2"
-                              />
+                              <video controls>
+                                <source src={media.url} />
+                              </video>
                             </>
-                           
-                          ):(<></>)
+                          ) : (<></>)
                         }
                         {
-                          
-                          VIDEOS_EXTENSTION.includes(attachment.type)?(
-                            
-                            <> 
-                            <video  controls>
-                                  <source src={imageUrls[attachment.url]} type={`video/${attachment.type}`} />
-                                </video>
-                          </>
-                          ):(<></>)
-                        }
-                        {
-                          !IMAGES_EXTENSTIONS.includes(attachment.type) &&
-                          !VIDEOS_EXTENSTION.includes(attachment.type) 
-                          ?
-                          (<>
-                          <div >
-                              <div className="flex-1" >
-                                <a href={imageUrls[attachment.url]} target="_blank"  >{attachment.name}</a>
+                          !IMAGES_EXTENSTIONS.includes(media.type) &&
+                            !VIDEOS_EXTENSTION.includes(media.type)
+                            ?
+                            (<>
+                              <div >
+                                <div className="flex-1" >
+                                  <a href={media.url} target="_blank"  >{media.name}</a>
+                                </div>
                               </div>
-                            </div>
-                          </>):(<></>)
+                            </>) : (<></>)
                         }
                       </div>
                     ))
@@ -99,46 +66,42 @@ const UserChat = ({ isTyping, messages }: { isTyping: boolean; messages: ChatMes
                       <p>{message.content}</p>
                     </div>
                   )
-                ) : message.attachments?.length > 0 ? (
-                  message.attachments.map((attachment, i) => (
+                ) : message?.mediaLink?.length > 0 ? (
+                  message?.mediaLink?.map((media, i) => (
                     <div key={i} className="w-1/4 h-1/4 bg-yellow-700 p-5 rounded-3xl place-self-end">
-                       {
-                          IMAGES_EXTENSTIONS.includes(attachment.type)?(
-                            <img 
-                                src={imageUrls[attachment.url] || ""} 
-                                alt="send-image" 
-                                className="h-1/2"
-                              />
-                          ):(<></>)
-                        }
-                        {
-                          
-                          VIDEOS_EXTENSTION.includes(attachment.type)?(
-                            
-                            <>
-                            
-                             
-                             
-                                <video  controls>
-                                  <source src={imageUrls[attachment.url]} type={`video/${attachment.type}`} />
-                                </video>
-                              );
-                            
+                      {
+                        IMAGES_EXTENSTIONS.includes(media.type) ? (
+                          <img
+                            src={media?.url || ""}
+                            alt="send-image"
+                            className="h-1/2"
+                          />
+                        ) : (<></>)
+                      }
+                      {
+
+                        VIDEOS_EXTENSTION.includes(media.type) ? (
+
+                          <>
+                            <video controls>
+                              <source src={media?.url} type={`video/${media.type}`} />
+                            </video>
                           </>
-                          ):(<></>)
-                        }
-                        {
-                          !IMAGES_EXTENSTIONS.includes(attachment.type) &&
-                          !VIDEOS_EXTENSTION.includes(attachment.type) 
+                        ) : (<></>)
+                      }
+                      {
+
+                        !IMAGES_EXTENSTIONS.includes(media.type) &&
+                          !VIDEOS_EXTENSTION.includes(media.type)
                           ?
                           (<>
-                          <div >
+                            <div >
                               <div className="flex-1" >
-                                <a href={imageUrls[attachment.url]} target="_blank"  >{attachment.name}</a>
+                                <a href={media.url} target="_blank"  >{media.name}</a>
                               </div>
                             </div>
-                          </>):(<></>)
-                        }
+                          </>) : (<></>)
+                      }
                     </div>
                   ))
                 ) : (

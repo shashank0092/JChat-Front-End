@@ -4,7 +4,7 @@ import SocketEvents from "../../utills/SocketEvents";
 import CallIcon from '@mui/icons-material/Call';
 import { Socket } from "socket.io-client"
 import { IconButton, Tooltip } from "@mui/material";
-import { GetS3KeyImageParser } from "../../utills/ImageKeyParse";
+
 
 
 interface Attachment {
@@ -14,18 +14,7 @@ interface Attachment {
   size:Number
 }
 const Contacts = ({ avlaiblechat, socket, isVoiceCall }:
-  { avlaiblechat: { email: string; about: string; attachment: [Attachment]; name: string; }, socket: Socket | null, isVoiceCall?: boolean | false }) => {
-
-  const [imageLink,setimageLink]=useState("")
-   
-  useEffect(()=>{
-    SetUserImage()
-  },[])
-
-  const SetUserImage=async()=>{
-    const s3URL=await GetS3KeyImageParser(avlaiblechat.attachment[0].url)
-    setimageLink(s3URL)
-  }
+  { avlaiblechat: { email: string; about: string; attachment: [Attachment]; name: string;mediaLink:{url: string; type: string,name:string,size:Number}[]; }, socket: Socket | null, isVoiceCall?: boolean | false }) => {
 
   const onMessageReceived = () => {
 
@@ -37,8 +26,7 @@ const Contacts = ({ avlaiblechat, socket, isVoiceCall }:
       socket?.on(SocketEvents.MESSAGE_RECEIVED_EVENT, onMessageReceived)
     }
   }, [])
-  // const URL_END_POINT = import.meta.env.VITE_IMAGE_URL_END_POINT
-  // const IMAGE_PATH = avlaiblechat.imagePath
+  
   return (
     <>
       <div>
@@ -46,13 +34,7 @@ const Contacts = ({ avlaiblechat, socket, isVoiceCall }:
           <div className="flex gap-5 items-center">
             <div className="">
               <div className="w-fit ">
-                {/* <IKImage
-               urlEndpoint={import.meta.env.VITE_IMAGE_URL_END_POINT}
-               path={avlaiblechat.imagePath}
-               width={40}
-               className=" rounded-full"
-               /> */}
-                <img src={imageLink} alt="" width={40} className="rounded-lg" />
+                <img src={avlaiblechat.mediaLink[0].url} alt="" width={40} className="rounded-lg" />
               </div>
             </div>
             <div className="">

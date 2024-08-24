@@ -26,6 +26,7 @@ interface AvlaibleChat {
     email: string;
     about: string;
     attachment: [Attachment];
+    mediaLink:{url: string; type: string,name:string,size:Number}[];
     name: string;
     phoneNumber: string;
     createdAt: string;

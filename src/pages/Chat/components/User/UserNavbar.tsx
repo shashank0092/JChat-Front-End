@@ -5,7 +5,6 @@ import { CiMenuKebab } from "react-icons/ci";
 import { ChatListInterface, ChatUserDetails } from "../../../../interface/chat"
 import { useAuth } from "../../../../context/AuthContext";
 import { useEffect, useState } from "react";
-import { GetS3KeyImageParser } from "../../../../utills/ImageKeyParse";
 
 
 
@@ -30,9 +29,8 @@ const UserNavbar = ({ currentChat }: { currentChat: ChatListInterface | null }) 
 
     const SetUserImage = async () => {
        
-        const s3URL = await GetS3KeyImageParser(participant[0].attachment[0].url)
-        console.log(s3URL, "shukla bi")
-        setimageLink(s3URL)
+        
+        setimageLink(participant[0].mediaLink[0].url)
     }
     return (
         <>

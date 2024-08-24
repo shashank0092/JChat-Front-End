@@ -4,7 +4,7 @@ import { LocalStorage } from "../utills"
 console.log(import.meta.env.VITE_SERVER_URL)
 
 const apiClient=axios.create({
-    baseURL:"http://192.168.89.156:8000/api/v1/",
+    baseURL:"http://192.168.155.156:8000/api/v1/",
     // withCredentials:true,
     // timeout:120000
 })

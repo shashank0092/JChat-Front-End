@@ -181,7 +181,7 @@ const ChatFooter = ({
           <div>
             <div className="absolute bottom-[8vh] left-[36vw]">
              {
-              fileacceptType=="image/*"?
+              fileacceptType=="image/*"|| uploadedImageSrc?
               (<>
                 <img
                 src={uploadedImageSrc}

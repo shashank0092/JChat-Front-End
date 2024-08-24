@@ -22,6 +22,7 @@ export interface ChatUserDetails{
     email: string;
     about: string;
     attachment: [Attachment];
+    mediaLink:{url: string; type: string,name:string,size:Number}[];
     name: string;
 }
 
@@ -29,6 +30,7 @@ export interface ChatMessageInterface{
     _id:string,
     sender:Pick<UserInterface,"_id"|"email"|"attachment">,
     attachments:{ url: string; type: string,name:string,size:Number }[];
+    mediaLink:{url: string; type: string,name:string,size:Number}[];
     content:string;
     chat:string;
     createdAt:string;
