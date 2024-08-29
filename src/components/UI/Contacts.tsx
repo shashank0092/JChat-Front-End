@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { IoMdDoneAll } from "react-icons/io";
 import SocketEvents from "../../utills/SocketEvents";
 import CallIcon from '@mui/icons-material/Call';

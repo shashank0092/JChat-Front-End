@@ -29,7 +29,7 @@ const UserNavbar = ({ currentChat }: { currentChat: ChatListInterface | null }) 
 
     const SetUserImage = async () => {
        
-        if(participant){
+        if(participant && participant[0]){
             setimageLink(participant[0].mediaLink[0].url)
         }
         

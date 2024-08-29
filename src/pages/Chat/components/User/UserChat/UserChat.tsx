@@ -2,7 +2,7 @@ import Typing from "../../../../../components/Typing/Typing";
 import { ChatMessageInterface } from "../../../../../interface/chat";
 import ChatDate from "./component/ChatDate";
 import { LocalStorage } from "../../../../../utills";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { IMAGES_EXTENSTIONS, VIDEOS_EXTENSTION } from "../../../../../utills/MediaTypes";
 
 const UserChat = ({ isTyping, messages }: { isTyping: boolean; messages: ChatMessageInterface[] }) => {

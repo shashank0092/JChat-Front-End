@@ -330,7 +330,6 @@ const ChatFooter = ({
             </div>
             <div>
               <VoiceRecorder
-                message={message}
                 setMessage={setMessage}
               />
             </div>

@@ -2,7 +2,7 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import { IconButton } from '@mui/material';
 import StopIcon from '@mui/icons-material/Stop';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-const VoiceRecorder=({message,setMessage}:{message:string,setMessage: Dispatch<SetStateAction<string>>})=>{
+const VoiceRecorder=({setMessage}:{setMessage: Dispatch<SetStateAction<string>>})=>{
 
     const [isListening, setIsListening] = useState<boolean>(false);
     const recognitionRef = useRef<InstanceType<typeof webkitSpeechRecognition> | null>(null);

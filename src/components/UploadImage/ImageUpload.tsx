@@ -5,7 +5,7 @@ interface ImageUploadProps{
     setAttachments:React.Dispatch<React.SetStateAction<File|undefined>>
 }
 
-const ImageUpload = ({name,imageURL,setImageURL,setAttachments}:ImageUploadProps) => {
+const ImageUpload = ({imageURL,setAttachments}:ImageUploadProps) => {
 
     
 

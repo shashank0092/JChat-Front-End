@@ -10,26 +10,9 @@ import SocketEvents from "../../utills/SocketEvents";
 import { LocalStorage, requestHnadler } from "../../utills";
 import Contacts from "../../components/UI/Contacts";
 import UserNavbar from "../Chat/components/User/UserNavbar";
+import {AvlaibleChat} from "../../interface/chat"
 
-interface AvlaibleChat {
-    participants: Array<{
-      email: string;
-      about: string;
-      imagePath: string;
-      name: string;
-      phoneNumber: string;
-      createdAt: string;
-      updatedAt: string;
-      _id: string;
-    }>;
-    admin: string;
-    isGroupChat: boolean;
-    lastMessage: string | null;
-    _id: string;
-    name: string;
-    createdAt: string;
-    updatedAt: string;
-  }
+
 const VoiceCall=()=>{
     const { user } = useAuth();
     const { socket } = useSocket();
