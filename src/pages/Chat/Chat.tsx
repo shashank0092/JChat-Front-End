@@ -13,34 +13,9 @@ import { TailSpin } from "react-loader-spinner";
 import { useAuth } from "../../context/AuthContext";
 import { LocalStorage, requestHnadler } from "../../utills";
 import { useSocket } from "../../context/SocketContext";
+import {AvlaibleChat} from "../../interface/chat"
 
-interface Attachment {
-  url: string;
-  type: string;
-  name:string;
-  size:Number
-}
 
-interface AvlaibleChat {
-  participants: Array<{
-    email: string;
-    about: string;
-    attachment: [Attachment];
-    mediaLink:{url: string; type: string,name:string,size:Number}[];
-    name: string;
-    phoneNumber: string;
-    createdAt: string;
-    updatedAt: string;
-    _id: string;
-  }>;
-  admin: string;
-  isGroupChat: boolean;
-  lastMessage: string | null;
-  _id: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-}
 
 const Chat = () => {
   const { user } = useAuth();

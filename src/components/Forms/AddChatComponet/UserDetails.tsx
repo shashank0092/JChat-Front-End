@@ -1,42 +1,42 @@
 import React, { Dispatch, SetStateAction } from "react"
-import { IKImage } from 'imagekitio-react';
-interface UserDetailsProp{
-    details:{
-        imagePath:string,
-        email:string,
-        name:string,
-        _id:string
+import {Attachment} from "../../../interface/chat"
 
-    }[],
+
+interface AvailableUser{
+    email:string,
+    name:string,
+    mediaLink:[Attachment],
+    _id:string
+  }
+interface UserDetailsProp{
+    details:[AvailableUser],
     setSelectedUser:Dispatch<SetStateAction<string|undefined>>,
-    selectedGroupMember:Array<{imagePath:string,name:string,email:string,_id:string}>,
-    setSelectedGroupMember:Dispatch<SetStateAction<Array<{ imagePath: string, name: string,email:string,_id:string }>>>,
+    selectedGroupMember:Array<AvailableUser>,
+    setSelectedGroupMember:Dispatch<SetStateAction<Array<AvailableUser>>>,
     isGroupChat:boolean
     
 }
 
 const UserDetails:React.FC<UserDetailsProp> =({details,setSelectedUser,setSelectedGroupMember,isGroupChat})=>{
-    console.log("this is details",details)
-
+    
     
     return(
         <>
             <div className=" flex flex-col  pr-8  "  >
                 {
                     details.map((detail)=>{
-                        console.log(detail?.imagePath,"this is image path")
+                       
 
                         return(
                             <div className="flex gap-2 bg-white border rounded-full hover:cursor-pointer hover:border-black 
                             " onClick={()=> isGroupChat?(setSelectedGroupMember((selectedGroupMember)=>[...selectedGroupMember, detail])):(setSelectedUser(detail.email))  }  >
                                 <div className="" >
                 
-                                    <IKImage
-                                    urlEndpoint={import.meta.env.VITE_IMAGE_URL_END_POINT}
-                                    path={detail.imagePath}
+                                    <img
+                                    src={detail.mediaLink[0].url}
                                     width={35}
                                     height={35}
-                                    className="rounded-full  "
+                                    className="rounded-full"
                                     />
                                 </div>
                                 <div  >

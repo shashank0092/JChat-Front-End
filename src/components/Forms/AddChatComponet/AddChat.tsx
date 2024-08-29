@@ -6,21 +6,31 @@ import { Formik, Form, Field } from "formik";
 import { debounce } from "lodash";
 import { CreateAndGetOneOnOneChat, SearchUser } from "../../../api";
 import UserDetails from "./UserDetails";
-import { IKImage } from "imagekitio-react";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import {Attachment} from "../../../interface/chat"
 
+interface AvailableUser{
+  email:string,
+  name:string,
+  mediaLink:[Attachment],
+  _id:string
+}
 
 const AddChat:React.FC<{setModalState:Dispatch<SetStateAction<boolean>>}> = ({setModalState}) => {
   const [isGroupChat, setIsGroupChat] = useState(false);
-  const [availableUser, setAvailableUser] = useState();
+  const [availableUser, setAvailableUser] = useState<[AvailableUser]>();
   const [selectedGroupMember, setSelectedGroupMember] = useState<
-    Array<{ imagePath: string; name: string; email: string; _id: string }>
+    Array<{ email:string,
+      name:string,
+      mediaLink:[Attachment],
+      _id:string}>
   >([]);
   const [selectedUser, setSelectedUser] = useState<string | undefined>();
 
   const SearchEmailUser = async (email: string) => {
     const user = await SearchUser({ email });
     const userDetails = await user.data?.data?.data;
+    console.log(userDetails,"this is hsukla")
     setAvailableUser(userDetails);
   };
 
@@ -146,9 +156,8 @@ const AddChat:React.FC<{setModalState:Dispatch<SetStateAction<boolean>>}> = ({se
                               <>
                                 <div className="flex w-fit py-2 px-2 items-center  gap-2 bg-black rounded-full ">
                                   <div>
-                                    <IKImage
-                                      urlEndpoint={import.meta.env.VITE_IMAGE_URL_END_POINT}
-                                      path={member.imagePath}
+                                    <img
+                                      src={member.mediaLink[0].url}
                                       width={20}
                                     />
                                   </div>
